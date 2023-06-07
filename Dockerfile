@@ -1,4 +1,4 @@
-FROM ubuntu:22.04 as base
+FROM ubuntu:22.04
 
 RUN echo "Package: *\nPin: origin packages.microsoft.com\nPin-Priority: 1001" > /etc/apt/preferences.d/dotnet
 
@@ -22,12 +22,3 @@ WORKDIR /app
 RUN dotnet build
 
 CMD ["dotnet", "run"]
-
-
-FROM base as bad
-
-FROM base as good
-
-RUN  curl -sSL http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.19_amd64.deb -o libssl1.1_1.1.1f-1ubuntu2.19_amd64.deb \
-    && dpkg -i libssl1.1_1.1.1f-1ubuntu2.19_amd64.deb \
-    && rm libssl1.1_1.1.1f-1ubuntu2.19_amd64.deb
