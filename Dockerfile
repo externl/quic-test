@@ -15,6 +15,9 @@ RUN curl -sSL https://packages.microsoft.com/config/ubuntu/22.04/packages-micros
 
 RUN apt-get update && apt-get install -y --no-install-recommends libmsquic dotnet-sdk-7.0
 
+# Uncomment the following line to install the liblttng-ust1 package.
+# RUN apt-get remove liblttng-ust1
+
 COPY . /app
 
 WORKDIR /app
